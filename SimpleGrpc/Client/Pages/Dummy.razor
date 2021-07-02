@@ -1,16 +1,17 @@
 ﻿@inject GrpcChannel Channel
 
-<h3>Dummy</h3>
 
-
-<p>
-    @if (IndexQuotation != null)
-    {
-        @IndexQuotation
-        <br />
-        <strong> @QuoteAuthor</strong>
-    }
-</p>
+<div style="border:solid black 1px">
+    <h3>Dummy Component</h3>
+    <p>
+        @if (IndexQuotation != null)
+        {
+            @IndexQuotation
+            <br />
+            <strong> - @QuoteAuthor</strong>
+        }
+    </p>
+</div>
 
 @code {
 
