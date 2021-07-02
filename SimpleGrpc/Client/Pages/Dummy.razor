@@ -1,0 +1,32 @@
+﻿@inject GrpcChannel Channel
+
+<h3>Dummy</h3>
+
+
+<p>
+    @if (IndexQuotation != null)
+    {
+        @IndexQuotation
+        <br />
+        <strong> @QuoteAuthor</strong>
+    }
+</p>
+
+@code {
+
+    private string IndexQuotation = "dummy text";
+
+    private string QuoteAuthor = "author";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var client = new GrpcDB.DBservicesthroughGrpc.DBservicesthroughGrpcClient(Channel);
+        var dataRequest = new GrpcDB.QuoteRequest();
+
+        GrpcDB.GetQuoteResponse quoteResponse = await client.GetIndexQuoteDetailsAsync(dataRequest);
+
+        IndexQuotation = Convert.ToString(quoteResponse.Quote);
+        QuoteAuthor = Convert.ToString(quoteResponse.FirstName + " " + quoteResponse.MiddleName + " " + quoteResponse.LastName);
+
+    }
+}

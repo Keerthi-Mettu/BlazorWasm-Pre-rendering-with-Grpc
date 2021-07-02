@@ -1,0 +1,27 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GrpcDB";
+//package DBConnections;
+
+message QuoteRequest{
+	string Id =1;
+}
+
+message GetQuoteResponse{
+	string FirstName = 1;
+	string MiddleName = 2;
+	string LastName = 3;
+	string Quote = 4;	
+}
+
+/*
+message QuoteData{
+	string FirstName = 1;
+	string MiddleName = 2;
+	string LastName = 3;
+	string Quote = 4;	
+} */
+
+service DBservicesthroughGrpc{
+	rpc GetIndexQuoteDetails(QuoteRequest) returns (GetQuoteResponse);
+}
